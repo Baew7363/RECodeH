@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REcode - Code Any Idea</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5592204664424267"
+     crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="recode-landing">
+  <header class="recode-header">
+    <a href="#" class="recode-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+        <polyline points="16 18 22 12 16 6"></polyline>
+        <polyline points="8 6 2 12 8 18"></polyline>
+      </svg>
+      REcode
+    </a>
+    <div class="recode-nav">
+      <select class="lang-select" id="langSelect" onchange="changeLang(this.value)">
+        <option value="python">Python</option>
+        <option value="javascript">JavaScript</option>
+        <option value="text/typescript">TypeScript</option>
+        <option value="text/x-java">Java</option>
+        <option value="text/x-c++src">C++</option>
+        <option value="text/x-csrc">C</option>
+        <option value="text/x-csharp">C#</option>
+        <option value="text/x-go">Go</option>
+        <option value="text/x-rustsrc">Rust</option>
+        <option value="application/x-httpd-php">PHP</option>
+        <option value="ruby">Ruby</option>
+        <option value="text/x-swift">Swift</option>
+        <option value="text/x-kotlin">Kotlin</option>
+        <option value="xml">HTML</option>
+        <option value="css">CSS</option>
+        <option value="text/x-sass">SCSS/Sass</option>
+        <option value="javascript">JSON</option>
+        <option value="xml">XML</option>
+        <option value="yaml">YAML</option>
+        <option value="markdown">Markdown</option>
+        <option value="text/x-sql">SQL</option>
+        <option value="shell">Shell/Bash</option>
+        <option value="application/x-powershell">PowerShell</option>
+        <option value="dockerfile">Dockerfile</option>
+        <option value="lua">Lua</option>
+        <option value="perl">Perl</option>
+        <option value="r">R</option>
+        <option value="dart">Dart</option>
+        <option value="text/x-scala">Scala</option>
+        <option value="groovy">Groovy</option>
+        <option value="text/x-objectivec">Objective-C</option>
+        <option value="text/x-vb">Visual Basic</option>
+        <option value="text/x-fsharp">F#</option>
+        <option value="elixir">Elixir</option>
+        <option value="erlang">Erlang</option>
+        <option value="haskell">Haskell</option>
+        <option value="clojure">Clojure</option>
+        <option value="julia">Julia</option>
+        <option value="coffeescript">CoffeeScript</option>
+        <option value="text/x-less">Less</option>
+        <option value="graphql">GraphQL</option>
+        <option value="text/x-solidity">Solidity</option>
+        <option value="vim">VimL</option>
+        <option value="stex">LaTeX</option>
+        <option value="octave">MATLAB</option>
+        <option value="protobuf">Protocol Buffers</option>
+        <option value="toml">TOML</option>
+        <option value="properties">INI</option>
+        <option value="text/x-batch">Batch</option>
+        <option value="cmake">CMake</option>
+        <option value="verilog">Verilog</option>
+        <option value="vhdl">VHDL</option>
+        <option value="gas">Assembly</option>
+        <option value="pascal">Pascal</option>
+        <option value="fortran">Fortran</option>
+        <option value="cobol">COBOL</option>
+        <option value="commonlisp">Lisp</option>
+        <option value="scheme">Scheme</option>
+        <option value="tcl">Tcl</option>
+        <option value="abap">ABAP</option>
+        <option value="text/x-apex">Apex</option>
+        <option value="crystal">Crystal</option>
+        <option value="nim">Nim</option>
+        <option value="text/x-ocaml">OCaml</option>
+        <option value="reason">Reason</option>
+        <option value="purescript">PureScript</option>
+        <option value="elm">Elm</option>
+        <option value="zig">Zig</option>
+        <option value="v">V</option>
+        <option value="wren">Wren</option>
+        <option value="glsl">GLSL</option>
+        <option value="hlsl">HLSL</option>
+        <option value="wgsl">WGSL</option>
+        <option value="svelte">Svelte</option>
+        <option value="vue">Vue</option>
+        <option value="text/jsx">React JSX</option>
+        <option value="text/plain">Plain Text</option>
+      </select>
+
+      <input type="file" id="fileInput" style="display:none" accept="*">
+      <button class="icon-btn" onclick="document.getElementById('fileInput').click()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+        Upload
+      </button>
+
+      <button class="icon-btn" onclick="downloadCode()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Download
+      </button>
+
+      <button class="icon-btn theme-btn" id="themeBtn" onclick="toggleTheme()">
+        <span id="themeIcon">&#127769;</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="badge">
+        <span>&#9889;</span> Supports with ease
+      </div>
+      <h1>
+        Code any idea<br>with <span class="gradient-text">REcode</span>
+      </h1>
+      <p class="hero-desc">
+        Write, run, and share your code in any programming language. Supports all popular languages and more, with a fast and professional coding experience.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="startCoding()">Start Coding Now</button>
+        <button class="btn-secondary" onclick="seeExample()">
+          See Example
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="editor-mockup">
+        <div class="editor-header">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="file-tab">
+              <span>&#128196;</span>
+              <span id="fileName">main.py</span>
+            </div>
+            <span style="color:var(--text-muted);font-size:1.1rem;cursor:pointer;" onclick="newFile()" title="New File">+</span>
+          </div>
+          <div class="editor-actions">
+            <button class="run-btn" onclick="runCode()">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Run
+            </button>
+            <button class="icon-btn" style="padding:4px 8px;font-size:0.9rem;" onclick="toggleOutput()" title="Toggle Output">
+              &#9660;
+            </button>
+          </div>
+        </div>
+        <div class="editor-body">
+          <textarea id="codeEditor"></textarea>
+        </div>
+        <div class="editor-output" id="outputPanel">
+          <div class="output-header">
+            <span>Output</span>
+            <button class="output-toggle" onclick="clearOutput()">Clear</button>
+          </div>
+          <div class="output-body" id="outputBody">
+            <div class="output-line"><span class="output-prompt">REcode</span> <span class="output-text">Ready to code!</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">&#127760;</div>
+      <h3>All Languages</h3>
+      <p>Supports all popular and advanced programming languages</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#9729;&#65039;</div>
+      <h3>Download Code</h3>
+      <p>Export your code and download it as a single file with one click</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#9889;</div>
+      <h3>Fast &amp; Efficient</h3>
+      <p>Lightning-fast environment with instant output preview</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128737;&#65039;</div>
+      <h3>Safe &amp; Trusted</h3>
+      <p>Your code is saved securely and your files are always safe</p>
+    </div>
+  </section>
+
+  <section class="languages-section">
+    <h2>More than 60 programming languages</h2>
+    <div class="lang-grid">
+      <div class="lang-item" onclick="quickSetLang('python')">
+        <div class="lang-icon" style="background:linear-gradient(135deg,#3776ab,#ffd43b);">Py</div>
+        <div class="lang-name">Python</div>
+      </div>
+      <div class="lang-item" onclick="quickSetLang('javascript')">
+        <div class="lang-icon" style="background:linear-gradient(135deg,#f7df1e,#323330);color:#000;">JS</div>
+        <div class="lang-name">JavaScript</div>
+      </div>
+      <div class="lang-item" onclick="quickSetLang('text/typescript')">
+        <div class="lang-icon" style="background:linear-gradient(135deg,#3178c6,#235a97);">TS</div>
+        <div class="lang-name">TypeScript</div>
+      </div>
+      <div class="lang-item" onclick="quickSetLang('text/x-java')">
+        <div class="lang-icon" style="background:linear-gradient(135deg,#007396,#5382a1);">Ja</div>
+        <div class="lang-name">Java</div>
+      </div>
+      <div class="lang-item" onclick="quickSetLang('text/x-c++src')">
+        <div class="lang-icon" style="background:linear-gradient(135deg,#00599c,#004482);">C++</div>
+        <div class="lang-name">C++</div>
+      </div>
+      <div class="lang-item" onclick="quickSetLang('text/x-csharp')">
+        <div class="lang-icon" style="background:linear-gradient(135deg,#68217a,#9b4f96);">C#</div>
+        <div class="lang-name">C#</div>
+      </div>
+      <div class="lang-item" onclick="quickSetLang('application/x-httpd-php')">
+        <div class="lang-icon" style="background:linear-gradient(135deg,#777bb4,#4f5b93);">PHP</div>
+        <div class="lang-name">PHP</div>
+      </div>
+      <div class="lang-item" onclick="quickSetLang('text/x-go')">
+        <div class="lang-icon" style="background:linear-gradient(135deg,#00add8,#29beb0);">Go</div>
+        <div class="lang-name">Go</div>
+      </div>
+      <div class="lang-item" onclick="quickSetLang('text/x-rustsrc')">
+        <div class="lang-icon" style="background:linear-gradient(135deg,#dea584,#ce422b);">Rs</div>
+        <div class="lang-name">Rust</div>
+      </div>
+      <div class="lang-more" onclick="document.getElementById('langSelect').focus()">&#8943;</div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat-item">
+      <div class="stat-icon">&#128101;</div>
+      <div class="stat-content">
+        <div class="stat-number">+50K</div>
+        <div class="stat-label">Active Users</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">&lt;/&gt;</div>
+      <div class="stat-content">
+        <div class="stat-number">+1M</div>
+        <div class="stat-label">Code Snippets</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">&#128196;</div>
+      <div class="stat-content">
+        <div class="stat-number">+200K</div>
+        <div class="stat-label">Files Downloaded</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">&#127760;</div>
+      <div class="stat-content">
+        <div class="stat-number">60+</div>
+        <div class="stat-label">Languages Supported</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="recode-footer">
+    <div class="footer-copy">&copy; 2026 REcode. All rights reserved.</div>
+    <div class="footer-links">
+      <a onclick="openLegal('privacy')">Privacy Policy</a>
+      <a onclick="openLegal('terms')">Terms &amp; Conditions</a>
+    </div>
+  </footer>
+</div>
+
+<div class="legal-overlay" id="legalOverlay" onclick="if(event.target===this) closeLegal()">
+  <div class="legal-modal">
+    <div class="legal-modal-header">
+      <h3 id="legalTitle">Privacy Policy</h3>
+      <button class="legal-close-btn" onclick="closeLegal()">&times;</button>
+    </div>
+    <div class="legal-modal-body" id="legalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/shell/shell.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/markdown/markdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/yaml/yaml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/rust/rust.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/go/go.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/ruby/ruby.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/php/php.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/dart/dart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/lua/lua.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/perl/perl.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/r/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/vb/vb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/powershell/powershell.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/dockerfile/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/coffeescript/coffeescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/commonlisp/commonlisp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/haskell/haskell.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/erlang/erlang.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/elm/elm.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/julia/julia.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/groovy/groovy.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clojure/clojure.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/toml/toml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/properties/properties.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/vhdl/vhdl.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/pascal/pascal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/fortran/fortran.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/tcl/tcl.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/cmake/cmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/gas/gas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sass/sass.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
